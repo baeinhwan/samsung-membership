@@ -1,31 +1,56 @@
 package com.example.scontroll;
 
-import android.annotation.SuppressLint;
-import android.app.*;
-import android.os.Bundle;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VerticalSeekBar;
-/*import android.widget.VerticalSeekBar_Reverse;*/
-import android.os.*;
-import android.view.*;
-import android.view.View.OnClickListener;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity implements SensorEventListener, OnClickListener {
 
 	SeekBar seekBar, seekBar_coolant, seekBar_battery, seekBar_fuel;
 	TextView txtVolume, txtVolume_coolant, txtVolume_battery, txtVolume_fuel;
+
+	SensorManager sensorManager = null;
+	 
+	//for accelerometer values
+	TextView outputX;
+	TextView outputY;
+	TextView outputZ;
+	 
+	//for orientation values
+	TextView outputX2;
+	TextView outputY2;
+	TextView outputZ2;
+	
+	TextView outputX3;
+	TextView outputY3;
+	TextView outputZ3;	
+	
+	int i=0, Roll=0;
+
+	SensorManager mSensorManager;
+	
+	protected int Sensor;
+	
 	// 주용이가 한부분
 	private Button neutral, reverse, driving, pivot;
 	private Button emergency, parking, monned, unmonned;
@@ -46,7 +71,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private NumberThread mNumberThread;
 
 
-	public String SERVER_IP = "210.118.75.91";
+	public String SERVER_IP = "210.118.75.176";
 	public int SERVER_PORT = 30001;
 	String name;
 
@@ -65,7 +90,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        
+        //  outputX = (TextView) findViewById(R.id.TextView04);
+        //  outputY = (TextView) findViewById(R.id.TextView05);
+        //  outputZ = (TextView) findViewById(R.id.TextView06);
+       
+          outputX2 = (TextView) findViewById(R.id.speedtextX);
+          outputY2 = (TextView) findViewById(R.id.speedtextY);           
+/*          outputX3 = (TextView) findViewById(R.id.TextView04);
+          outputY3 = (TextView) findViewById(R.id.TextView05);	
+*/        
 		mHandler = new Handler();
 		mNumberThread = new NumberThread(true);
 		mNumberThread.start();
@@ -76,7 +112,13 @@ public class MainActivity extends Activity implements OnClickListener {
 	    int a=100;
 	    speed =(TextView)findViewById(R.id.speedtext);
 	    speed.setText(a+""); // 여기까지		
-		
+	    
+	    speed =(TextView)findViewById(R.id.speedtextX);
+	    speed.setText(a+""); // 여기까지		
+
+	    speed =(TextView)findViewById(R.id.speedtextY);
+	    speed.setText(a+""); // 여기까지			    
+	    
 		verticalSeekBar = (VerticalSeekBar) findViewById(R.id.vertical_Seekbar);
 		/*
 		 * verticalSeekBar_Reverse=(VerticalSeekBar_Reverse)findViewById(R.id.
@@ -423,6 +465,49 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	//요기까지
 	
+	  @Override
+	    public synchronized void onResume() {
+	        super.onResume();
+	        sensorManager.registerListener(this, sensorManager.getDefaultSensor(sensorManager.SENSOR_ACCELEROMETER), sensorManager.SENSOR_DELAY_GAME);
+	        sensorManager.registerListener(this, sensorManager.getDefaultSensor(sensorManager.SENSOR_ORIENTATION), sensorManager.SENSOR_DELAY_GAME);
+
+	        }
+	    @Override
+	    public void onStop() {
+	        super.onStop();
+	        sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(sensorManager.SENSOR_ACCELEROMETER));
+	        sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(sensorManager.SENSOR_ORIENTATION));
+	    }    
+	    
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+			// TODO Auto-generated method stub
+
+			
+		}
+		public void onSensorChanged(SensorEvent event) {
+			// TODO Auto-generated method stub
+			int s=0;
+
+			// TODO Auto-generated method stub
+/*		    synchronized (this) {*/
+		        switch (event.sensor.getType()){
+		        	case SensorManager.SENSOR_ACCELEROMETER:
+		     //           outputX.setText("x:"+Float.toString(event.values[0]));
+		     //          outputY.setText("y:"+Float.toString(event.values[1]));
+		     //           outputZ.setText("z:"+Float.toString(event.values[2]));
+		            break;
+		        	case SensorManager.SENSOR_ORIENTATION:
+		        		outputX2.setText("좌우:"+(int)((float)event.values[0]*10*-1));
+		                outputY2.setText("전후:  :  "+(int)((float)event.values[1]*10*-1));	        		
+/*		        		outputX3.setText("  X축 속도   :  "+(int)event.values[0]*-1);
+		        		outputY3.setText("  Y축 속도   :  "+(int)event.values[1]*-1);
+*/
+		            break;
+		 
+		        }
+/*		    }			*/					
+		}	    
+	
 	class NumberThread extends Thread {
 
 		
@@ -581,6 +666,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
+
+
 
 	
 }

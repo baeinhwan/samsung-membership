@@ -381,7 +381,25 @@
         android:layout_x="270dp" 
         android:layout_y="100dp"
          />
-    
+    <TextView
+        android:id="@+id/speedtextY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize = "28dp"
+        android:textColor = "#ffffff"
+        android:layout_x="270dp" 
+        android:layout_y="80dp"
+         />            
+    <TextView
+        android:id="@+id/speedtextX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize = "28dp"
+        android:textColor = "#ffffff"
+        android:layout_x="270dp" 
+        android:layout_y="120dp"
+         />    
+
 </AbsoluteLayout>
 <!-- 		android:progressDrawable="@drawable/thumb"
         android:thumb="@drawable/ic_launcher" 
