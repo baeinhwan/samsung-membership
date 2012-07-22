@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements SensorEventListener, OnCli
 	TextView outputY3;
 	TextView outputZ3;	
 	
+	
 	int i=0, Roll=0;
 
 	SensorManager mSensorManager;
@@ -491,11 +492,6 @@ public class MainActivity extends Activity implements SensorEventListener, OnCli
 			// TODO Auto-generated method stub
 /*		    synchronized (this) {*/
 		        switch (event.sensor.getType()){
-		        	case SensorManager.SENSOR_ACCELEROMETER:
-		     //           outputX.setText("x:"+Float.toString(event.values[0]));
-		     //          outputY.setText("y:"+Float.toString(event.values[1]));
-		     //           outputZ.setText("z:"+Float.toString(event.values[2]));
-		            break;
 		        	case SensorManager.SENSOR_ORIENTATION:
 		        		outputX2.setText("좌우:"+(int)((float)event.values[0]*10*-1));
 		                outputY2.setText("전후:  :  "+(int)((float)event.values[1]*10*-1));	        		
