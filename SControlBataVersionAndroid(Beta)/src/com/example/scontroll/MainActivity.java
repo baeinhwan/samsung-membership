@@ -338,7 +338,7 @@ public class MainActivity extends Activity implements SensorEventListener,
 
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		// 세로전환 됬을때
+		// 세로전환 되었을때
 		if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
 			mNumberThread.Motion = true;
 			Toast.makeText(MainActivity.this, "세로모드", Toast.LENGTH_SHORT)
