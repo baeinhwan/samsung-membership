@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scontrol"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="horizontal" >
+    
+    <ImageView
+        android:id="@+id/streering_ctrl"
+        android:layout_width="255px"
+        android:layout_height="255px"
+        android:layout_x="30px"
+        android:layout_y="518px"
+        android:adjustViewBounds="true"
+        android:background="@drawable/str_ctrl"
+      />
+    <ImageView
+        android:id="@+id/driving_ctrl"
+        android:layout_width="255px"
+        android:layout_height="255px"
+        android:layout_x="993px"
+        android:layout_y="520px"
+        android:adjustViewBounds="true"
+        android:background="@drawable/drv_ctrl"
+      />    
+ 
+    <!-- Steering Seekbar -->
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="105dp"
+        android:layout_height="50dip"
+        android:layout_x="53px"
+        android:layout_y="599px"
+        android:max="100"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:maxHeight="95px"         
+        android:progress="50"
+        android:progressDrawable="@drawable/progressbar_custom"      	
+      	android:thumb="@drawable/str_ctrl_pt"        
+        android:thumbOffset="0dip" />
+
+    <TextView
+        android:id="@+id/volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="585px"
+        android:layout_y="420px"
+        android:text="조향: 0 %"
+        android:textColor="#FFF" />
+
+    <!-- Driving, Braking Seekbar -->
+
+    <TextView
+        android:id="@+id/vertical_sb_progresstext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="585px"
+        android:layout_y="455px"
+        android:gravity="center"
+        android:text="구동: 0 %"
+        android:textColor="#FFF" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/seekBarlinear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1072px"
+        android:layout_y="550px"
+        android:orientation="vertical" >
+
+    <android.widget.VerticalSeekBar
+        android:id="@+id/vertical_Seekbar"
+        android:layout_width="50dip"
+        android:layout_height="100dip"
+        android:max="200"
+		android:thumbOffset="0dip"        
+        android:layout_gravity="center_horizontal"
+        android:maxHeight="95px"  		
+	    android:progressDrawable="@drawable/progressbar_custom"      	
+	   	android:thumb="@drawable/drv_ctrl_pt"              
+        android:progress="100" />
+    </LinearLayout>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/statelayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="803px"
+        android:layout_y="172px"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/leftwheel1"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#00000000"
+            android:gravity="right|center_vertical"
+            android:text="0"
+            android:textColor="#00BFFF"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/leftwheel2"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/leftwheel1"
+            android:background="#00000000"
+            android:gravity="right|center_vertical"
+            android:text="0"
+            android:textColor="#00BFFF"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/leftwheel3"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/leftwheel2"
+            android:background="#00000000"
+            android:gravity="right|center_vertical"
+            android:text="0"
+            android:textColor="#00BFFF"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/vcu"
+            android:layout_width="100dp"
+            android:layout_height="18dp"
+            android:layout_alignTop="@+id/leftwheel1"
+            android:layout_toRightOf="@+id/leftwheel1"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="주행제어기"
+            android:textColor="#fff"
+            android:textSize="22px" />
+
+        <TextView
+            android:id="@+id/pcu"
+            android:layout_width="100dp"
+            android:layout_height="18dp"
+            android:layout_alignLeft="@+id/vcu"
+            android:layout_below="@+id/vcu"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="전력제어기"
+            android:textColor="#fff"
+            android:textSize="22px" />
+
+        <TextView
+            android:id="@+id/mcu"
+            android:layout_width="100dp"
+            android:layout_height="18dp"
+            android:layout_alignLeft="@+id/pcu"
+            android:layout_below="@+id/pcu"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="서보제어기"
+            android:textColor="#fff"
+            android:textSize="22px" />
+
+        <TextView
+            android:id="@+id/tcu"
+            android:layout_width="100dp"
+            android:layout_height="18dp"
+            android:layout_alignLeft="@+id/mcu"
+            android:layout_below="@+id/mcu"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="무장제어기"
+            android:textColor="#fff"
+            android:textSize="22px" />
+
+        <TextView
+            android:id="@+id/fcu"
+            android:layout_width="100dp"
+            android:layout_height="18dp"
+            android:layout_alignLeft="@+id/tcu"
+            android:layout_below="@+id/tcu"
+            android:background="#00000000"
+            android:gravity="center"
+            android:text="냉각제어기"
+            android:textColor="#fff"
+            android:textSize="22px" />
+
+        <TextView
+            android:id="@+id/rightwheel1"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/leftwheel1"
+            android:layout_gravity="center_horizontal"
+            android:layout_toRightOf="@+id/vcu"
+            android:background="#00000000"
+            android:gravity="left|center_vertical"
+            android:text="0"
+            android:textColor="#00BFFF"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/rightwheel2"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/rightwheel1"
+            android:layout_toRightOf="@+id/mcu"
+            android:background="#00000000"
+            android:gravity="left|center_vertical"
+            android:text="0"
+            android:textColor="#00BFFF"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/rightwheel3"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/rightwheel2"
+            android:layout_toRightOf="@+id/fcu"
+            android:background="#00000000"
+            android:gravity="left|center_vertical"
+            android:text="0"
+            android:textColor="#00BFFF"
+            android:textSize="30px" />
+    </RelativeLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drivelayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="300px"
+        android:layout_y="500px"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/neutral"
+            android:layout_width="198px"
+            android:layout_height="71px"
+            android:adjustViewBounds="true"
+            android:background="@drawable/neutral_sel"
+            android:cropToPadding="false" />
+
+        <ImageButton
+            android:id="@+id/reverse"
+            android:layout_width="198px"
+            android:layout_height="71px"
+            android:layout_marginTop="20px"
+            android:adjustViewBounds="true"
+            android:background="@drawable/reverse" />
+
+        <ImageButton
+            android:id="@+id/driving"
+            android:layout_width="198px"
+            android:layout_height="71px"
+            android:layout_marginTop="20px"
+            android:adjustViewBounds="true"
+            android:background="@drawable/driving" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/unmannedlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="780px"
+        android:layout_y="500px"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/emergency"
+            android:layout_width="198px"
+            android:layout_height="71px"
+            android:adjustViewBounds="true"
+            android:background="@drawable/emergency"
+            android:cropToPadding="false" />
+
+        <ImageButton
+            android:id="@+id/parking"
+            android:layout_width="198px"
+            android:layout_height="71px"
+            android:layout_marginTop="20px"
+            android:adjustViewBounds="true"
+            android:background="@drawable/parking_sel" />
+
+        <ImageButton
+            android:id="@+id/unmanned"
+            android:layout_width="198px"
+            android:layout_height="71px"
+            android:layout_marginTop="20px"
+            android:adjustViewBounds="true"
+            android:background="@drawable/unmanned" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/iptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="0px"
+        android:layout_y="0px"
+        android:background="#00000000"
+        android:text="0"
+        android:textColor="#64d6ff"
+        android:textSize="50px" />
+
+
+    <ImageButton
+        android:id="@+id/motionbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@drawable/motion_ctrl" />
+
+    <TextView
+        android:id="@+id/motionspeed"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_x="490px" 
+        android:layout_y="230px"
+        android:background="#00000000"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="#00BFFF"
+        android:textSize="80px" />
+
+    <TextView
+        android:id="@+id/kmh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="690px" 
+        android:layout_y="390px"
+        android:layout_alignBottom="@+id/motionspeed"
+        android:layout_toRightOf="@+id/motionspeed"
+        android:background="#00000000"
+        android:text="km/h"
+        android:textColor="#ffffff"
+        android:textSize="20px" />
+    <TextView
+        android:id="@+id/speedtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize = "28dp"
+        android:textColor = "#ffffff"
+        android:layout_x="270dp" 
+        android:layout_y="100dp"/>
+    <TextView
+        android:id="@+id/speedtextX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="구동: 0 %"          
+        android:gravity="center"        
+        android:textColor = "#FFF"
+        android:layout_x="335px" 
+        android:layout_y="670px"/> 
+    <TextView
+        android:id="@+id/speedtextY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="조향: 0 %"       
+        android:gravity="center"        
+        android:textColor = "#FFF"
+        android:layout_x="335px" 
+        android:layout_y="705px"/>            
+-->
+
+</AbsoluteLayout>
